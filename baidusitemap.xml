@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/2020/04/18/queue/</loc>
+    <lastmod>2020-04-18</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/04/18/stack/</loc>
+    <lastmod>2020-04-18</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/2020/04/18/vector/</loc>
     <lastmod>2020-04-18</lastmod>
   </url>  <url>

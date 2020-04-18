@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/04/18/queue/</loc>
+    
+    <lastmod>2020-04-18T14:33:07.361Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/18/stack/</loc>
+    
+    <lastmod>2020-04-18T14:32:33.305Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/04/18/vector/</loc>
     
     <lastmod>2020-04-18T07:53:20.677Z</lastmod>
