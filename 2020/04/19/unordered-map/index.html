@@ -17,17 +17,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>unoredered_map | 樱樱怪&#39;s Blog</title>
+  <title>unordered_map | 樱樱怪&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="STL(6)--unordered_map的使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="unoredered_map">
-<meta property="og:url" content="http://yoursite.com/2020/04/19/unoredered-map/index.html">
+<meta property="og:title" content="unordered_map">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/unordered-map/index.html">
 <meta property="og:site_name" content="樱樱怪&#39;s Blog">
 <meta property="og:description" content="STL(6)--unordered_map的使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-19T06:31:33.000Z">
-<meta property="article:modified_time" content="2020-04-19T06:34:17.528Z">
+<meta property="article:published_time" content="2020-04-19T06:41:01.000Z">
+<meta property="article:modified_time" content="2020-04-19T07:14:55.696Z">
 <meta property="article:author" content="樱樱怪">
 <meta property="article:tag" content="STL">
 <meta property="article:tag" content="C++">
@@ -175,21 +175,21 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-unoredered-map" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-unordered-map" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      unoredered_map
+      unordered_map
     </h1>
   
 
       
         
-        <a href="/2020/04/19/unoredered-map/" class="archive-article-date">
-  	<time datetime="2020-04-19T06:31:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+        <a href="/2020/04/19/unordered-map/" class="archive-article-date">
+  	<time datetime="2020-04-19T06:41:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
 </a>
         <!-- 需要添加的位置 -->
         <!-- 开始添加字数统计-->
@@ -221,7 +221,7 @@
       
         <h2 align="center">STL(6)--unordered_map的使用</h2>
 <a id="more"></a>
-unordered_map内部实现的是一个哈希表，元素的排列顺序是杂乱的无序的。
+unordered_map内部实现的是一个哈希表，元素的排列顺序是杂乱的，无序的。
 
 <p>因为内部实现的哈希表，故nuordered_map的查找速度很快。但哈希表的建立比较耗费时间</p>
 <h4 id="1-unordered-map的创建与建立"><a href="#1-unordered-map的创建与建立" class="headerlink" title="1. unordered_map的创建与建立"></a>1. unordered_map的创建与建立</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="built_in">unordered_map</span>&lt;key的数据类型,value的数据类型&gt; m;</span><br><span class="line"></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;   <span class="comment">//创建key为int类型，value为int类型的unordered_map</span></span><br></pre></td></tr></table></figure>
@@ -242,23 +242,17 @@ unordered_map内部实现的是一个哈希表，元素的排列顺序是杂乱�
 </ul>
 <h4 id="4-unordered-map查找数据"><a href="#4-unordered-map查找数据" class="headerlink" title="4. unordered_map查找数据"></a>4. unordered_map查找数据</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> count(key)：判定关键字是否出现。返回为<span class="number">0</span>：关键字没有出现；返回值为<span class="number">1</span>：关键字出现(缺点:无法判断关键字的位置)</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> find(key)：传入参数为要查找的key,返回一个迭代器,当数据存在时，返回数据所在位置的迭代器，如果没有查找到，则返回迭代器等于end()函数返回的迭代器</span><br><span class="line"></span><br><span class="line"><span class="comment">/*测试程序*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">9</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">3</span>, <span class="number">11</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">100</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">6</span>, <span class="number">99</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">4</span>, <span class="number">18</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">5</span>, <span class="number">34</span>));</span><br><span class="line">	m[<span class="number">1</span>] = <span class="number">88</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (m.count(<span class="number">5</span>)) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"find successfully"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"fail"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> iter = m.find(<span class="number">5</span>);</span><br><span class="line">	<span class="keyword">if</span> (iter != m.end()) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Find,the value is"</span> &lt;&lt; iter-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Do not Find"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output:</span><br><span class="line">find successfully</span><br><span class="line">Find,the value is34</span><br></pre></td></tr></table></figure>
 
-
 <h4 id="5-unordered-map的删除"><a href="#5-unordered-map的删除" class="headerlink" title="5. unordered_map的删除"></a>5. unordered_map的删除</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> erase(iterator)：删除指定迭代器指向的元素</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> erase(iterator_start,iterator_last)：删除一个区间的元素，该区间左开右闭</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> erase(key)：通过key值删除元素</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> clean()：清空<span class="built_in">map</span>的所有元素，相当于erase(<span class="built_in">map</span>.begin(),<span class="built_in">map</span>.end());</span><br><span class="line"></span><br><span class="line">5. map的迭代器不支持'+n'操作，例如map.begin()+1,但支持map.begin()++,map.begin()--操作</span><br><span class="line"></span><br><span class="line"><span class="comment">/*测试程序*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">9</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">3</span>, <span class="number">11</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">100</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">6</span>, <span class="number">99</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">4</span>, <span class="number">18</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">5</span>, <span class="number">34</span>));</span><br><span class="line">	m[<span class="number">1</span>] = <span class="number">88</span>;</span><br><span class="line"></span><br><span class="line">	m.erase(m.begin());    <span class="comment">//删除第一个元素</span></span><br><span class="line">	m.erase(m.begin(), ++m.begin());   <span class="comment">//删除一个元素</span></span><br><span class="line">	m.erase(<span class="number">6</span>);      <span class="comment">//按key值删除元素</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> iter = m.begin(); iter != m.end(); iter++) &#123;      <span class="comment">//从前面向后面遍历</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; iter-&gt;first &lt;&lt; <span class="string">'\t'</span> &lt;&lt; iter-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output:</span><br><span class="line"><span class="number">2</span>   <span class="number">100</span></span><br><span class="line"><span class="number">4</span>   <span class="number">18</span></span><br><span class="line"><span class="number">5</span>   <span class="number">34</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="6-unordered-map其他常用函数"><a href="#6-unordered-map其他常用函数" class="headerlink" title="6.unordered_map其他常用函数"></a>6.unordered_map其他常用函数</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> at(key)：返回对应key的value值，如果key值不存在会抛出out_of_range异常</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> empty()：判度<span class="built_in">map</span>是否为空，返回值为<span class="keyword">bool</span>类型</span><br></pre></td></tr></table></figure>
 
 <p>summary:</p>
 <ul>
-<li><p>map和unordered_map的函数api很相似</p>
-</li>
-<li><p>map的内部的数据结构是红黑树，unordered_map的内部数据结构是哈希表</p>
-</li>
-<li><p>unordered_map的查询速度比map快</p>
-</li>
-<li><p>unordered_map的建表时间较长</p>
-</li>
-<li><p>unordered_map是不自动排序的，map会根据key值大小自动排序</p>
-</li>
+<li>map和unordered_map的函数api很相似</li>
+<li>map的内部的数据结构是红黑树，unordered_map的内部数据结构是哈希表</li>
+<li>unordered_map的查询速度比map快</li>
+<li>unordered_map的建表时间较长</li>
+<li>unordered_map是不自动排序的，map会根据key值大小自动排序</li>
 </ul>
 
       
@@ -382,7 +376,7 @@ unordered_map内部实现的是一个哈希表，元素的排列顺序是杂乱�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/19/unoredered-map/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/19/unordered-map/" alt="微信分享二维码">
     </div>
 </div>
 
