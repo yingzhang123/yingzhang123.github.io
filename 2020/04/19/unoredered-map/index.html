@@ -17,17 +17,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | 樱樱怪&#39;s Blog</title>
+  <title>unoredered_map | 樱樱怪&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="樱樱怪&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="STL(6)--unordered_map的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unoredered_map">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/unoredered-map/index.html">
 <meta property="og:site_name" content="樱樱怪&#39;s Blog">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="STL(6)--unordered_map的使用">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-19T06:31:33.000Z">
+<meta property="article:modified_time" content="2020-04-19T06:34:17.528Z">
 <meta property="article:author" content="樱樱怪">
-<meta property="article:tag" content="Angular8">
+<meta property="article:tag" content="STL">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="樱樱怪&#39;s Blog" type="application/atom+xml">
@@ -172,36 +175,141 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-unoredered-map" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      unoredered_map
+    </h1>
   
-    
-    
+
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/unoredered-map/" class="archive-article-date">
+        
+        <a href="/2020/04/19/unoredered-map/" class="archive-article-date">
   	<time datetime="2020-04-19T06:31:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/unoredered-map/">unoredered_map</a>
-    </h1>
-  
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.2k字</span>
+      </span>
+    </span>
 
-        <div class="article-info info-on-right">
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
           
+        <!-- 添加完成 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 align="center">STL(6)--unordered_map的使用</h2>
+<a id="more"></a>
+unordered_map内部实现的是一个哈希表，元素的排列顺序是杂乱的无序的。
+
+<p>因为内部实现的哈希表，故nuordered_map的查找速度很快。但哈希表的建立比较耗费时间</p>
+<h4 id="1-unordered-map的创建与建立"><a href="#1-unordered-map的创建与建立" class="headerlink" title="1. unordered_map的创建与建立"></a>1. unordered_map的创建与建立</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="built_in">unordered_map</span>&lt;key的数据类型,value的数据类型&gt; m;</span><br><span class="line"></span><br><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;   <span class="comment">//创建key为int类型，value为int类型的unordered_map</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-unordered-map数据的插入"><a href="#2-unordered-map数据的插入" class="headerlink" title="2. unordered_map数据的插入"></a>2. unordered_map数据的插入</h4><p>pair&lt;key的数据类型,value的数据类型&gt;:可以看作一个键值对类型</p>
+<p>iterator-&gt;first：pair中的关键字(key)<br>iterator-&gt;second：pair中的关键字对应的数据(value)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> insert(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(<span class="number">1</span>,<span class="number">2</span>))：使用insert函数插入一个pair键值对</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> insert(<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::value_type(<span class="number">1</span>,<span class="number">2</span>))：使用insert函数插入value_types数据</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> m[key]=value：使用下标方式插入数据</span><br><span class="line"></span><br><span class="line"><span class="comment">/*测试程序*/</span></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include&lt;<span class="built_in">unordered_map</span>&gt;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">9</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">3</span>, <span class="number">11</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">100</span>)); </span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">6</span>, <span class="number">99</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">4</span>, <span class="number">18</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">5</span>, <span class="number">34</span>));</span><br><span class="line">	m[<span class="number">1</span>] = <span class="number">88</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> iter = m.begin(); iter != m.end(); iter++) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; iter-&gt;first &lt;&lt; <span class="string">'\t'</span> &lt;&lt; iter-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output:</span><br><span class="line"><span class="number">1</span>   <span class="number">88</span></span><br><span class="line"><span class="number">3</span>   <span class="number">11</span></span><br><span class="line"><span class="number">2</span>   <span class="number">100</span></span><br><span class="line"><span class="number">6</span>   <span class="number">99</span></span><br><span class="line"><span class="number">4</span>   <span class="number">18</span></span><br><span class="line"><span class="number">5</span>   <span class="number">34</span></span><br></pre></td></tr></table></figure>
+<p>由程测试序可知：</p>
+<ul>
+<li><p>unordered_map的数据是无序的</p>
+</li>
+<li><p>使用下标方式插入元素，可以使用重复key值，但是会覆盖以前key值对应的值</p>
+</li>
+<li><p>key不可以重复</p>
+</li>
+<li><h4 id="3-unordered-map的遍历"><a href="#3-unordered-map的遍历" class="headerlink" title="3. unordered_map的遍历"></a>3. unordered_map的遍历</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">9</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">3</span>, <span class="number">11</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">100</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">6</span>, <span class="number">99</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">4</span>, <span class="number">18</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">5</span>, <span class="number">34</span>));</span><br><span class="line">	m[<span class="number">1</span>] = <span class="number">88</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//方法一：使用前向迭代器</span></span><br><span class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator iter;</span><br><span class="line">	<span class="keyword">for</span> (iter = m.begin(); iter != m.end(); iter++) &#123;      <span class="comment">//从前面向后面遍历</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; iter-&gt;first &lt;&lt; <span class="string">'\t'</span> &lt;&lt; iter-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//方法二：使用数组遍历方法</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">1</span>; index &lt;= m.size(); index++) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; m[index] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与map相比，unordered_map没有反向迭代器的数据成员</p>
+</li>
+</ul>
+<h4 id="4-unordered-map查找数据"><a href="#4-unordered-map查找数据" class="headerlink" title="4. unordered_map查找数据"></a>4. unordered_map查找数据</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> count(key)：判定关键字是否出现。返回为<span class="number">0</span>：关键字没有出现；返回值为<span class="number">1</span>：关键字出现(缺点:无法判断关键字的位置)</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> find(key)：传入参数为要查找的key,返回一个迭代器,当数据存在时，返回数据所在位置的迭代器，如果没有查找到，则返回迭代器等于end()函数返回的迭代器</span><br><span class="line"></span><br><span class="line"><span class="comment">/*测试程序*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">9</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">3</span>, <span class="number">11</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">100</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">6</span>, <span class="number">99</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">4</span>, <span class="number">18</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">5</span>, <span class="number">34</span>));</span><br><span class="line">	m[<span class="number">1</span>] = <span class="number">88</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (m.count(<span class="number">5</span>)) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"find successfully"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"fail"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> iter = m.find(<span class="number">5</span>);</span><br><span class="line">	<span class="keyword">if</span> (iter != m.end()) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Find,the value is"</span> &lt;&lt; iter-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Do not Find"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output:</span><br><span class="line">find successfully</span><br><span class="line">Find,the value is34</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="5-unordered-map的删除"><a href="#5-unordered-map的删除" class="headerlink" title="5. unordered_map的删除"></a>5. unordered_map的删除</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> erase(iterator)：删除指定迭代器指向的元素</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> erase(iterator_start,iterator_last)：删除一个区间的元素，该区间左开右闭</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> erase(key)：通过key值删除元素</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> clean()：清空<span class="built_in">map</span>的所有元素，相当于erase(<span class="built_in">map</span>.begin(),<span class="built_in">map</span>.end());</span><br><span class="line"></span><br><span class="line">5. map的迭代器不支持'+n'操作，例如map.begin()+1,但支持map.begin()++,map.begin()--操作</span><br><span class="line"></span><br><span class="line"><span class="comment">/*测试程序*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">1</span>, <span class="number">9</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">3</span>, <span class="number">11</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">2</span>, <span class="number">100</span>));</span><br><span class="line">	m.insert(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(<span class="number">6</span>, <span class="number">99</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">4</span>, <span class="number">18</span>));</span><br><span class="line">	m.insert(<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::value_type(<span class="number">5</span>, <span class="number">34</span>));</span><br><span class="line">	m[<span class="number">1</span>] = <span class="number">88</span>;</span><br><span class="line"></span><br><span class="line">	m.erase(m.begin());    <span class="comment">//删除第一个元素</span></span><br><span class="line">	m.erase(m.begin(), ++m.begin());   <span class="comment">//删除一个元素</span></span><br><span class="line">	m.erase(<span class="number">6</span>);      <span class="comment">//按key值删除元素</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> iter = m.begin(); iter != m.end(); iter++) &#123;      <span class="comment">//从前面向后面遍历</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; iter-&gt;first &lt;&lt; <span class="string">'\t'</span> &lt;&lt; iter-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output:</span><br><span class="line"><span class="number">2</span>   <span class="number">100</span></span><br><span class="line"><span class="number">4</span>   <span class="number">18</span></span><br><span class="line"><span class="number">5</span>   <span class="number">34</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-unordered-map其他常用函数"><a href="#6-unordered-map其他常用函数" class="headerlink" title="6.unordered_map其他常用函数"></a>6.unordered_map其他常用函数</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> at(key)：返回对应key的value值，如果key值不存在会抛出out_of_range异常</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> empty()：判度<span class="built_in">map</span>是否为空，返回值为<span class="keyword">bool</span>类型</span><br></pre></td></tr></table></figure>
+
+<p>summary:</p>
+<ul>
+<li><p>map和unordered_map的函数api很相似</p>
+</li>
+<li><p>map的内部的数据结构是红黑树，unordered_map的内部数据结构是哈希表</p>
+</li>
+<li><p>unordered_map的查询速度比map快</p>
+</li>
+<li><p>unordered_map的建表时间较长</p>
+</li>
+<li><p>unordered_map是不自动排序的，map会根据key值大小自动排序</p>
+</li>
+</ul>
+
+      
+
+    <!-- 每篇文章结尾 -->
+    
+      
+        <div class="essayending">
+          <div>
+           <div style="text-align:center;color: #ccc;font-size:22px;">
+           <br/>
+           <br/>
+           -------------Thank you for<i class="fa fa-paw"></i> reading-------------
+           <br/>
+           <br/>
+            <br/>
+            <br/>
+           </div>
+          </div>
+        </div>
+      
+
+  
+<!--每篇文章结尾-->
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -217,267 +325,113 @@
 		</ul>
 	</div>
 
-          
 
+      <!--配置阅读量-->
+       <span id="busuanzi_container_page_pv">
+          |阅读量(<span id="busuanzi_value_page_pv"></span>)
+        </span>
+      <!--配置阅读量完成-->
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/19/unoredered-map/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/map/" class="archive-article-date">
-  	<time datetime="2020-04-19T06:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/19/map/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">map</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/map/">map</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/18/queue/" class="archive-article-date">
-  	<time datetime="2020-04-18T14:31:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/18/queue/">queue</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/18/stack/" class="archive-article-date">
-  	<time datetime="2020-04-18T14:31:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/18/stack/">stack</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/18/vector/" class="archive-article-date">
-  	<time datetime="2020-04-18T07:45:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/18/vector/">vector</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/17/string/" class="archive-article-date">
-  	<time datetime="2020-04-17T12:41:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/17/string/">string</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">STL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/06/Hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2020-04-06T04:36:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/06/Hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Hexo常用命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -510,8 +464,8 @@
 	  var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
