@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/2020/04/21/set/</loc>
+    <lastmod>2020-04-23</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/04/21/unordered-set/</loc>
+    <lastmod>2020-04-23</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/04/23/deque/</loc>
+    <lastmod>2020-04-23</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/04/23/list/</loc>
+    <lastmod>2020-04-23</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/2020/04/19/unordered-map/</loc>
     <lastmod>2020-04-19</lastmod>
   </url>  <url>

@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/04/21/set/</loc>
+    
+    <lastmod>2020-04-23T14:55:05.328Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/21/unordered-set/</loc>
+    
+    <lastmod>2020-04-23T14:51:55.853Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/23/deque/</loc>
+    
+    <lastmod>2020-04-23T14:47:24.458Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/23/list/</loc>
+    
+    <lastmod>2020-04-23T14:46:42.933Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/04/19/unordered-map/</loc>
     
     <lastmod>2020-04-19T07:14:55.696Z</lastmod>
